@@ -1,6 +1,7 @@
+var w = fInit();
 /*******************************检查无障碍、退出主程序 */
 if (!auto.service) {
-    toast('无障碍服务未启动！退出！');
+    xfc('无障碍服务未启动！退出！');
     exit();
 }
 engines.all().map((ScriptEngine) => {
@@ -10,13 +11,13 @@ engines.all().map((ScriptEngine) => {
 });
 
 /*******************************通用配置 */
-toastLog('开启屏幕长亮，程序结束后关闭...');
+xfc('开启屏幕长亮，程序结束后关闭...');
 device.keepScreenOn(1000*60*60*24);
 yinl0();
 let 音量键监听=threads.start(registerKey);
-toastLog('随时可以按音量下键来随时停止脚本');
+xfc('随时可以按音量下键来随时停止脚本');
 sleep(2000);
-toastLog('3秒后开始刷任务');
+xfc('3秒后开始刷任务');
 sleep(3000);
 /*******************************手机配置 */
 let kd=device.width;let gd=device.height;let kdxs=kd/1080;let gdxs=gd/2340;
@@ -28,35 +29,36 @@ let cc=1; let c=1;let apmc='1'; let appk='1'; let xm=1;let 进程=1; let djjg=0;
 let w = fInit();
 /*******************配置*******************/  
 let jm=storages.create("xinglin_s11");
-let pzrwsc=jm.get("pzrwsc");if(pzrwsc){} else {pzrwsc=6*60;};toastLog('配置任务时长：'+pzrwsc+'分钟');
-let pzycsc=jm.get("pzycsc");if(pzycsc){} else {pzycsc=0;};toastLog('配置全局延迟：'+pzycsc+'秒');
+let pzrwsc=jm.get("pzrwsc");if(pzrwsc){} else {pzrwsc=6*60;};xfc('配置任务时长：'+pzrwsc+'分钟');
+let pzycsc=jm.get("pzycsc");if(pzycsc){} else {pzycsc=0;};xfc('配置全局延迟：'+pzycsc+'秒');
 pzycsc=pzycsc*1000;
-let jdpz=jm.get("jd11");if(jdpz){toastLog('你选择做京东任务。')};
-let tbpz=jm.get("tb11");if(tbpz){toastLog('你选择做淘宝任务。');toastLog('淘宝活动未开始，请加QQ群等待更新...');};
-let wxll=jm.get("wxll");if(wxll){toastLog('你选择做微信浏览任务，首次点击【使用完整服务】用于提现，否则无法进行')};
+let jdpz=jm.get("jd11");if(jdpz){xfc('你选择做京东任务。')};
+let tbpz=jm.get("tb11");if(tbpz){xfc('你选择做淘宝任务。');xfc('淘宝活动未开始，请加QQ群等待更新...');};
+let wxll=jm.get("wxll");if(wxll){xfc('你选择做微信浏览任务，首次点击【使用完整服务】用于提现，否则无法进行')};
 
-let 主程序停止=threads.start(tingz());
-function tingz(){
-    sleep(pzycsc+pzrwsc*60*1000);
-    engines.all().map((ScriptEngine) => {
-        if (engines.myEngine().toString() !== ScriptEngine.toString()) {
-            ScriptEngine.forceStop();
-        }
-    });
-};
+// let 主程序停止=threads.start(tingz());
+// function tingz(){
+//     sleep(pzycsc+pzrwsc*60*1000);
+//     engines.all().map((ScriptEngine) => {
+//         if (engines.myEngine().toString() !== ScriptEngine.toString()) {
+//             ScriptEngine.forceStop();
+//         }
+//     });
+// };
 /*******************主流程开始*******************/
 try{ 
+    xfc('开始执行阶段...')
     if(jdpz){
-        try{toastLog('开始执行京东');jd();
-    } catch(err){toastLog('执行京东中出错，切换到下一个任务...')};} else{log('未勾选京东任务')};
+        try{xfc('开始执行京东');jd();
+    } catch(err){xfc('执行京东中出错，切换到下一个任务...')};} else{log('未勾选京东任务')};
 
     if(wxll){
-        try{toastLog('开始执行微信浏览');toastLog('微信浏览任务待上线...');
-    } catch(err){toastLog('执行微信浏览中出错，切换到下一个任务...')};} else{log('未勾选微信浏览任务')};
+        try{xfc('开始执行微信浏览');xfc('微信浏览任务待上线...');
+    } catch(err){xfc('执行微信浏览中出错，切换到下一个任务...')};} else{log('未勾选微信浏览任务')};
 
     if(tbpz){
-        try{toastLog('开始执行淘宝');toastLog('淘宝任务未开始...');
-    } catch(err){toastLog('执行淘宝中出错，切换到下一个任务...')};} else{log('未勾选淘宝任务')};
+        try{xfc('开始执行淘宝');xfc('淘宝任务未开始...');
+    } catch(err){xfc('执行淘宝中出错，切换到下一个任务...')};} else{log('未勾选淘宝任务')};
 }catch(err){log(122);log(err.message);};
 threads.shutDownAll();
 exit();
@@ -87,13 +89,9 @@ function jd(){
     // 打开京东进入活动
     function openAndInto() {
         xfc('正在打开京东App...')
-        if (!launch('com.jingdong.app.mall')) {
-            xfc('可能未安装京东App')
-        }
-
-        sleep(pzycsc+2000)
-        xfc('进入活动页面')
-
+        dkapp('京东');
+        sleep(pzycsc+2000);
+        xfc('进入活动页面');
         app.startActivity({
             action: "VIEW",
             data: 'openApp.jdMobile://virtual?params={"category":"jump","action":"to","des":"m","sourceValue":"JSHOP_SOURCE_VALUE","sourceType":"JSHOP_SOURCE_TYPE","url":"https://u.jd.com/kIsEmAw","M_sourceFrom":"mxz","msf_type":"auto"}'
@@ -558,7 +556,7 @@ function jd(){
     // 全局try catch，应对无法显示报错
     try {
         if (autoOpen) {
-            openAndInto()
+            openAndInto();
             xfc('等待活动页面加载')
             if (!findTextDescMatchesTimeout(/.*开心愿奖.*/, 8000)) {
                 xfc('未能进入活动，请重新运行！')
@@ -686,7 +684,7 @@ function yinl0(){
 
         device.setMusicVolume(0)
 
-        toastLog('成功设置媒体音量为0')
+        xfc('成功设置媒体音量为0')
 
     		} catch (err) {
 
@@ -714,35 +712,35 @@ function registerKey() {
 };
 function dkapp(dkapmc){
     var dkcs=1;dkappk = getPackageName(dkapmc);
-    if(!dkappk){toastLog('未发现'+dkapmc+'安装包，此过程终止！');return 0};
+    if(!dkappk){xfc('未发现'+dkapmc+'安装包，此过程终止！');return 0};
     while(dkcs<9){
-        sleep(pzycsc+qjyc+2000);log(launchApp(dkapmc));toastLog('等待打开');
+        sleep(pzycsc+qjyc+2000);log(launchApp(dkapmc));xfc('等待打开');
         sleep(pzycsc+qjyc+3000);djzb('允许');djzb('跳过',1);
         c=packageName(dkappk).findOne(4000);
-        if(c!= null){toastLog('已加载APP,未识别到双开'); return 1}
+        if(c!= null){xfc('已加载APP,未识别到双开'); return 1}
         else{
-            toastLog('正尝试打开APP，如双开则自动选择APP');
+            xfc('正尝试打开APP，如双开则自动选择APP');
             if (shuangkcs==1){click(dkapmc,0);} else {click(dkapmc,1);};
             sleep(pzycsc+qjyc+2000);};
         djzb('跳过',1);sleep(pzycsc+qjyc+2000);djzb('允许');
         c=packageName(dkappk).findOne(7000);
-        if(c!= null){toastLog('第'+dkcs+'次尝试打开APP成功');return 1}
-        else {dkcs++;toastLog('第'+dkcs+'次尝试打开APP失败，最多重试8次，正尝试再次打开');  
+        if(c!= null){xfc('第'+dkcs+'次尝试打开APP成功');return 1}
+        else {dkcs++;xfc('第'+dkcs+'次尝试打开APP失败，最多重试8次，正尝试再次打开');  
         launchApp(yxhj);packageName(getPackageName(yxhj)).findOne(5000);};
         };
-    if(c!= null){toastLog('已成功打开APP'+dkapmc);sleep(pzycsc+qjyc+5000);return 1}
-        else{ toastLog('未能打开APP'+dkapmc);return 0}
+    if(c!= null){xfc('已成功打开APP'+dkapmc);sleep(pzycsc+qjyc+5000);return 1}
+        else{ xfc('未能打开APP'+dkapmc);return 0}
 }
 
 //关闭APP
 function gbapp(pknm) {
     try{
       home();sleep(pzycsc+qjyc+500);
-      toastLog('先关闭APP'+pknm);
+      xfc('先关闭APP'+pknm);
       var cmc = getPackageName(pknm);
-      if(!cmc){toastLog('未发现安装包，跳过本过程');return 0};
+      if(!cmc){xfc('未发现安装包，跳过本过程');return 0};
       app.openAppSetting(cmc);
-      toastLog('打开关闭设置');
+      xfc('打开关闭设置');
       sleep(pzycsc+qjyc+6000);
       let is_sure = textMatches(/(.*强行.*|.*停止.*|.*结束.*|.*关闭.*|.*立即.*)/).find();
       if (is_sure)
@@ -756,7 +754,7 @@ function gbapp(pknm) {
               sleep(pzycsc+qjyc+1000)};
           sleep(pzycsc+qjyc+2000);
       } else {
-          toastLog(app.getAppName(cmc) + "未在运行，不能关闭APP");
+          xfc(app.getAppName(cmc) + "未在运行，不能关闭APP");
       }
       sleep(pzycsc+qjyc+100);back();sleep(pzycsc+qjyc+100);back();sleep(pzycsc+qjyc+100);home();sleep(pzycsc+qjyc+100);
     } 
@@ -880,3 +878,4 @@ var w = floaty.rawWindow(
     setTimeout(()=>{w.close();},4000);
     return w;
 }
+
