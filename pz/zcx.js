@@ -30,7 +30,7 @@ let w = fInit();
 /*******************配置*******************/  
 let jm=storages.create("xinglin_s11");
 let pzrwsc=jm.get("pzrwsc");if(pzrwsc){} else {pzrwsc=6*60;};xfc('配置任务时长：'+pzrwsc+'分钟');
-let pzycsc=jm.get("pzycsc");if(pzycsc){} else {pzycsc=0;};xfc('配置全局延迟：'+pzycsc+'秒');
+let pzycsc=jm.get("pzycsc");if(pzycsc){} else {pzycsc=0.101;};xfc('配置全局延迟：'+pzycsc+'秒');
 pzycsc=pzycsc*1000;
 let jdpz=jm.get("jd11");if(jdpz){xfc('你选择做京东任务。')};
 let tbpz=jm.get("tb11");if(tbpz){xfc('你选择做淘宝任务。');xfc('淘宝活动未开始，请加QQ群等待更新...');};
@@ -714,49 +714,49 @@ function dkapp(dkapmc){
     var dkcs=1;dkappk = getPackageName(dkapmc);
     if(!dkappk){xfc('未发现'+dkapmc+'安装包，此过程终止！');return 0};
     while(dkcs<9){
-        sleep(pzycsc+qjyc+2000);log(launchApp(dkapmc));xfc('等待打开');
-        sleep(pzycsc+qjyc+3000);djzb('允许');djzb('跳过',1);
+        sleep(pzycsc+pzycsc+2000);log(launchApp(dkapmc));xfc('等待打开');
+        sleep(pzycsc+pzycsc+3000);djzb('允许');djzb('跳过',1);
         c=packageName(dkappk).findOne(4000);
         if(c!= null){xfc('已加载APP,未识别到双开'); return 1}
         else{
             xfc('正尝试打开APP，如双开则自动选择APP');
             if (shuangkcs==1){click(dkapmc,0);} else {click(dkapmc,1);};
-            sleep(pzycsc+qjyc+2000);};
-        djzb('跳过',1);sleep(pzycsc+qjyc+2000);djzb('允许');
+            sleep(pzycsc+pzycsc+2000);};
+        djzb('跳过',1);sleep(pzycsc+pzycsc+2000);djzb('允许');
         c=packageName(dkappk).findOne(7000);
         if(c!= null){xfc('第'+dkcs+'次尝试打开APP成功');return 1}
         else {dkcs++;xfc('第'+dkcs+'次尝试打开APP失败，最多重试8次，正尝试再次打开');  
         launchApp(yxhj);packageName(getPackageName(yxhj)).findOne(5000);};
         };
-    if(c!= null){xfc('已成功打开APP'+dkapmc);sleep(pzycsc+qjyc+5000);return 1}
+    if(c!= null){xfc('已成功打开APP'+dkapmc);sleep(pzycsc+pzycsc+5000);return 1}
         else{ xfc('未能打开APP'+dkapmc);return 0}
 }
 
 //关闭APP
 function gbapp(pknm) {
     try{
-      home();sleep(pzycsc+qjyc+500);
+      home();sleep(pzycsc+pzycsc+500);
       xfc('先关闭APP'+pknm);
       var cmc = getPackageName(pknm);
       if(!cmc){xfc('未发现安装包，跳过本过程');return 0};
       app.openAppSetting(cmc);
       xfc('打开关闭设置');
-      sleep(pzycsc+qjyc+6000);
+      sleep(pzycsc+pzycsc+6000);
       let is_sure = textMatches(/(.*强行.*|.*停止.*|.*结束.*|.*关闭.*|.*立即.*)/).find();
       if (is_sure)
       {
           for (var tz of is_sure){       log(1);
               try{click(tz.bounds().centerX(),tz.bounds().centerY());}catch(err){log(11)};
-              sleep(pzycsc+qjyc+1000)};
+              sleep(pzycsc+pzycsc+1000)};
           is_sure = textMatches(/(.*确定.*|.*强行.*|.*停止.*|.*结束.*|.*关闭.*|.*立即.*)/).find();
           for (var tz of is_sure){      log(2);  
               try{click(tz.bounds().centerX(),tz.bounds().centerY());}catch(err){log(11)};
-              sleep(pzycsc+qjyc+1000)};
-          sleep(pzycsc+qjyc+2000);
+              sleep(pzycsc+pzycsc+1000)};
+          sleep(pzycsc+pzycsc+2000);
       } else {
           xfc(app.getAppName(cmc) + "未在运行，不能关闭APP");
       }
-      sleep(pzycsc+qjyc+100);back();sleep(pzycsc+qjyc+100);back();sleep(pzycsc+qjyc+100);home();sleep(pzycsc+qjyc+100);
+      sleep(pzycsc+pzycsc+100);back();sleep(pzycsc+pzycsc+100);back();sleep(pzycsc+pzycsc+100);home();sleep(pzycsc+pzycsc+100);
     } 
     catch(err){log(err.massage())};
 }
@@ -769,7 +769,7 @@ function huisy(textt,apmca){
         if(cc!= null){
              return 1;
         }else{
-            back();sleep(pzycsc+qjyc+3000);}
+            back();sleep(pzycsc+pzycsc+3000);}
         return 0
     }
 }
@@ -806,15 +806,15 @@ function unlock()
     if(!device.isScreenOn())
     {		log(jiesuo);log(typeof(jiesuo));
         device.wakeUp();
-        sleep(pzycsc+qjyc+500);
+        sleep(pzycsc+pzycsc+500);
         swipe(500,1500,500,1000,210);
-        sleep(pzycsc+qjyc+1500)
+        sleep(pzycsc+pzycsc+1500)
         var password = jiesuo  //这里输入你手机的密码
         for(var i = 0; i < password.length; i++)
         { log(password[i]);
             var p = text(password[i]).findOne(2000).bounds();
             click(p.centerX(), p.centerY());
-            sleep(pzycsc+qjyc+100);
+            sleep(pzycsc+pzycsc+100);
         }
     }}  catch(err){log('解锁错误，不支持小米手机')};
 };
@@ -848,7 +848,7 @@ function xfc(str) {
       textView.setText(str.toString());
       w.container.addView(textView);
     });
-    console.info(str);
+    log(str);
 }   
 function fInit() {
 // ScrollView下只能有一个子布局
@@ -875,7 +875,49 @@ var w = floaty.rawWindow(
     w.setSize(720, -2);
     w.setPosition(10, 10);
     w.setTouchable(false);
-    setTimeout(()=>{w.close();},4000);
+    setTimeout(()=>{w.close();},100);
     return w;
 }
 
+function djzb(wz,ms,ii){
+    if(ii>0){
+        sleep(qjyc+3000);
+        switch(ms)
+        {
+            case 1:
+                var w = textContains(wz).boundsInside(0,0,kd+1,gd-1).findOnce(ii);
+                break;
+            case 2:
+                var w = id(wz).boundsInside(0,0,kd+1,gd-1).findOnce(ii);
+                break;
+            case 3:
+                var w = descContains(wz).boundsInside(0,0,kd+1,gd-1).findOnce(2000);
+                break;
+            default:
+                var w = text(wz).boundsInside(0,0,kd+1,gd-1).findOnce(ii);
+        }
+    }
+    else{ 
+            switch(ms)
+            {
+                case 1:
+                    var w = textContains(wz).boundsInside(0,0,kd+1,gd-1).findOne(3000);
+                    break;
+                case 2:
+                    var w = id(wz).boundsInside(0,0,kd+1,gd-1).findOne(3000);
+                    break;
+                 case 3:
+                    var w = descContains(wz).boundsInside(0,0,kd+1,gd-1).findOne(3000);
+                    break;
+                default:
+                    var w = text(wz).boundsInside(0,0,kd+1,gd-1).findOne(3000);
+            }
+        }
+    if(w!= null){
+        var b = w.bounds();log(Math.max(b.centerX(),10), Math.max(b.centerY(),10));
+        click(Math.max(b.centerX(),10), Math.max(b.centerY(),10));
+        log('执行点击');log(b.left,b.top,b.right,b.bottom);
+        return [b.left,b.top,b.right,b.bottom]
+    }else{log("未点击");
+            return 0}
+}
