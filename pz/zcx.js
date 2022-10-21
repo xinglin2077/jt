@@ -15,9 +15,9 @@ device.keepScreenOn(1000*60*60*24);
 yinl0();
 let 音量键监听=threads.start(registerKey);
 toastLog('随时可以按音量下键来随时停止脚本');
-sleep(pzycsc+2000);
+sleep(2000);
 toastLog('3秒后开始刷任务');
-sleep(pzycsc+3000);
+sleep(3000);
 /*******************************手机配置 */
 let kd=device.width;let gd=device.height;let kdxs=kd/1080;let gdxs=gd/2340;
 /*******************************常用变量 */
