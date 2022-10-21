@@ -31,7 +31,6 @@ let jm=storages.create("xinglin_s11");
 let pzrwsc=jm.get("pzrwsc");if(pzrwsc){} else {pzrwsc=6*60;};toastLog('配置任务时长：'+pzrwsc+'分钟');
 let pzycsc=jm.get("pzycsc");if(pzycsc){} else {pzycsc=0;};toastLog('配置全局延迟：'+pzycsc+'秒');
 pzycsc=pzycsc*1000;
-let jm=storages.create("xinglin_s11");
 let jdpz=jm.get("jd11");if(jdpz){toastLog('你选择做京东任务。')};
 let tbpz=jm.get("tb11");if(tbpz){toastLog('你选择做淘宝任务。');toastLog('淘宝活动未开始，请加QQ群等待更新...');};
 let wxll=jm.get("wxll");if(wxll){toastLog('你选择做微信浏览任务，首次点击【使用完整服务】用于提现，否则无法进行')};
