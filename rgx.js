@@ -4,7 +4,7 @@ var jblj = "/sdcard/xinglin/";
 files.ensureDir(jblj);
 var w = fInit();
 
-var xm=['zcx.js','ViewIdListRegisterListener.js']
+var xm=['zcx.js','ViewIdListRegisterListener.js','FileStorage.js']
 for(var itm of xm){
     rgx(jblj,itm);
 }
