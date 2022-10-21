@@ -1,8 +1,9 @@
 var jblj = "/sdcard/xinglin/";
-files.removeDir(jblj);files.ensureDir(jblj);
+files.ensureDir(jblj);
 var jblj = "/sdcard/xinglin/pz/";
-files.removeDir(jblj);files.ensureDir(jblj);
+files.ensureDir(jblj);
 var w = fInit();
+
 var xm=['zcx.js','ViewIdListRegisterListener.js']
 for(var itm of xm){
     rgx(jblj,itm);
@@ -13,13 +14,14 @@ let VERSION =jm.get("VERSION");
 const versionUrl = 'https://xinglin2077.github.io/jt/version'
 var r=http.get(versionUrl);
 var bb=r.body.string();
+xfc('当前版本:'+bb)
 jm.put("VERSION",bb);
 xfc("全量代码更新完成...");    
 
 /*****************************************函数区******************************/
 /*******************下载*******************/
 function rgx(xzjblj,wjm){
-    var url = "https://github.com/xinglin2077/jt/pz/"+wjm;
+    var url = "https://xinglin2077.github.io/jt/pz/"+wjm;
     var res = http.get(url);
     if (res.statusCode != 200) {
         xfc("云代码下载失败,请检查网络");
