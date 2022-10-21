@@ -1,6 +1,6 @@
-var jblj = "/sdcard/xinglin/";
-files.ensureDir(jblj);
 var jblj = "/sdcard/xinglin/pz/";
+files.ensureDir(jblj);
+var jblj = "/sdcard/xinglin/";
 files.ensureDir(jblj);
 var w = fInit();
 
