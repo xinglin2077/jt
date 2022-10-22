@@ -7,8 +7,8 @@ ui.layout(
     星临项目配置
     </text>
     <vertical>
-    <button id="automationPermission" text="授予无障碍权限" color="#005AFF" />
-    <button id="consolePermission" text="授予悬浮窗权限" color="#005AFF" />
+    <button id="automationPermission" text="请先授予无障碍权限" color="#FF0000" />
+    <button id="consolePermission" text="请先授予无障碍权限" color="#FF0000" />
     </vertical>
     <button id="btn" textStyle="bold" textSize="16" text="任 务 类 型 配 置" color="#ffffff" bg="#008000" foreground="?selectableItemBackground" layout_gravity="bottom"></button>
     <vertical weightSum="5" padding="18 8" marginBottom="2" h="auto">
@@ -118,7 +118,8 @@ ui.qd.click(function () {
 //     openJdUrl(url)
 // })
 
-
+toastLog('如弹出设置界面，请打开软件无障碍服务')
+auto.waitFor()
 let jm=storages.create("xinglin_s11");
 let VERSION =jm.get("VERSION");
 threads.start(checkUpdate);
