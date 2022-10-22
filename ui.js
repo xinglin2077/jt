@@ -58,7 +58,7 @@ ui.layout(
     ></button>
     </horizontal>
     <text text="1、请给与软件充分的权限以保证运行，包括但不限于无障碍、悬浮窗、后台打开、常驻后台。"  color="#008000" textStyle="bold" textSize="14sp"/>
-    <text text="2、脚本运行过程中使用【音量-】键来强行停止。"  color="#008000" textStyle="bold" textSize="14sp"/>
+    <text text="2、脚本运行过程中使用【音量-】键来强行停止，如果第一次出错，请重试一次或者加群解决。"  color="#008000" textStyle="bold" textSize="14sp"/>
     <text text="3、本脚本仅供学习参考，请勿用于非法用途，使用脚本导致的任何可能结果与本人无关，各软件请使用最新版运行。"  color="#008000" textStyle="bold" textSize="14sp"/>
 
 </vertical>
@@ -103,7 +103,7 @@ function bcpz(){
 }
 
 ui.qd.click(function () {
-    bcpz();checkUpdate();
+    bcpz();
     engines.execScriptFile('/sdcard/xinglin/zcx.js')
 })
 
@@ -121,6 +121,7 @@ ui.qd.click(function () {
 toastLog('如弹出设置界面，请打开软件无障碍服务')
 let jm=storages.create("xinglin_s11");
 let VERSION =jm.get("VERSION");
+threads.start(checkUpdate);
 try{
     var ViewIdListRegisterListener = require("/sdcard/xinglin/ViewIdListRegisterListener");
     let storage = storages.create("xinglin11bf");
