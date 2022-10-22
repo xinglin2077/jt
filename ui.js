@@ -16,7 +16,7 @@ ui.layout(
         <checkbox id="jd11" text="京东11"  textSize="16sp" textStyle="bold" color="#005AFF" ></checkbox>
         <checkbox id="jd112" text="京东11【双开版】"  textSize="16sp" textStyle="bold" color="#005AFF" ></checkbox>
         </horizontal>
-    <checkbox id="wxll" text="其他活动待添加"  textSize="16sp" textStyle="bold" color="#005AFF" ></checkbox>
+    <checkbox id="wxll" text="微信浏览公众号文章赚钱"  textSize="16sp" textStyle="bold" color="#005AFF" ></checkbox>
     <checkbox id="tb11" text="淘宝双11**等待更新"  textSize="16sp" textStyle="bold" color="#005AFF" ></checkbox>
     <button id="btn1" textStyle="bold" textSize="16" text="任 务 时 长 配 置" color="#ffffff" bg="#008000" foreground="?selectableItemBackground" layout_gravity="bottom"></button>
     <horizontal>
